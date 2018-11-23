@@ -5,7 +5,7 @@
 {{--</div>--}}
 
 <!-- User Id Field -->
-<div class="col-md-6">
+<div class="col-md-7">
 <div class="form-group">
 {!! Form::label('product_name', 'Product Name:') !!}
 <h4>{!! $qrcode->product_name !!}
@@ -27,7 +27,7 @@
         <p>{!! $qrcode->product_url !!}</p>
     </div>
 
-@if($qrcode->user_id==Auth::user()->id || Auth::user()->role_id ==1)
+@if($qrcode->user_id==Auth::user()->id || Auth::user()->role_id <3)
 <div class="form-group">
     {!! Form::label('user_name', 'User Name:') !!}
     <p>{!! $qrcode->user_id !!}</p>
@@ -93,7 +93,7 @@
     <p>{!! $qrcode->updated_at !!}</p>
 </div>
    @endif
-    <a href="{!! route('qrcodes.index') !!}" class="btn btn-default">Back</a>
+
 
 </div>
 <div class="col-md-5 pull-right">
@@ -105,4 +105,10 @@
         </p>
     </div>
 </div>
+@if($qrcode->user_id==Auth::user()->id || Auth::user()->role_id <3)
 
+<div class="col-md-12">
+    <h3 class="text-center">Transcation done on this Qrcode</h3>
+    @include('transcations.table')
+</div>
+@endif

@@ -71,7 +71,7 @@ class Qrcode extends Model
     public static $rules = [
         
     ];
-    public function transcation(){
+    public function transcations(){
         return $this->hasMany('App\Models\Transcation');
     }
 

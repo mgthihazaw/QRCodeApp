@@ -16,7 +16,11 @@
     <tbody>
     @foreach($transcations as $transcation)
         <tr>
-            <td>{!! $transcation->qrcode->product_name !!}</td>
+            <td>
+                <a href="{!! route('qrcodes.show', [$transcation->qrcode->id]) !!}" class="text-info text-bold">
+                    {!! $transcation->qrcode->product_name !!}
+                </a>
+            </td>
             <td>${!! $transcation->amount !!}</td>
             <td>{!! $transcation->user->name !!}& {!! $transcation->user->email !!}</td>
             <td>{!! $transcation->qrcode_owner->name !!}</td>

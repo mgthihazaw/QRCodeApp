@@ -33,8 +33,22 @@ Route::resource('transcations', 'TranscationController');
 
 Route::resource('users', 'UserController');
 
-Route::resource('roles', 'RoleController');
+    Route::resource('accounts', 'AccountController');
+
+Route::resource('accountHistories', 'AccountHistoryController');
+
+Route::group(['middleware'=>'checkmoderator'],function(){
+    Route::get('/users','UserController@index')->name('users.index');
+
+});
+
+
+//only admin can access this
+Route::resource('roles', 'RoleController')->middleware('checkadmin');
 
 });
 
 /*********Only Loginned User Can Accessed***********/
+
+
+

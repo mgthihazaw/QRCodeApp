@@ -3,20 +3,22 @@
         <tr>
             <th>Name</th>
         <th>Email</th>
-        <th>Email Verified At</th>
-        <th>Password</th>
-        <th>Remember Token</th>
+        <th>User Level</th>
+        @if(Auth::user()->role_id==1)
+
             <th colspan="3">Action</th>
+            @endif
         </tr>
     </thead>
     <tbody>
     @foreach($users as $user)
         <tr>
-            <td>{!! $user->name !!}</td>
+            <td><a href="{!! route('users.show', [$user->id]) !!}" class="text-bold text-info">
+                    {!! $user->name !!}</a></td>
             <td>{!! $user->email !!}</td>
-            <td>{!! $user->email_verified_at !!}</td>
-            <td>{!! $user->password !!}</td>
-            <td>{!! $user->remember_token !!}</td>
+            <td>{!! $user->role->name !!}</td>
+
+            @if(Auth::user()->role_id==1)
             <td>
                 {!! Form::open(['route' => ['users.destroy', $user->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
@@ -26,6 +28,7 @@
                 </div>
                 {!! Form::close() !!}
             </td>
+                @endif
         </tr>
     @endforeach
     </tbody>

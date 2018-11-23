@@ -58,9 +58,16 @@ class User extends Model
     public static $rules = [
         
     ];
-    public function transcation(){
+    public function transcations(){
         return $this->hasMany('App\Models\Transcation');
     }
-
-    
+    public function role(){
+        return $this->belongsTo('App\Models\Role');
+    }
+    public function qrcodes(){
+        return $this->hasMany('App\Models\Qrcode');
+    }
+    public function account(){
+        return $this->hasOne('\App\Models\Account');
+    }
 }

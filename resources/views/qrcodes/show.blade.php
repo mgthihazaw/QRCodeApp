@@ -5,7 +5,7 @@
         <h1 class="pull-left">
             Qrcode
         </h1>
-        @if($qrcode->user_id==Auth::user()->id || Auth::user()->role_id == 1)
+        @if($qrcode->user_id==Auth::user()->id || Auth::user()->role_id <3)
         <h1 class="pull-right">
         <a href="{!! route('qrcodes.edit', [$qrcode->id]) !!}" class='btn btn-primary'>
             Edit Qrcode</a>
